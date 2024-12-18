@@ -4,9 +4,10 @@ import itertools
 
 
 # Constants
-MIN_RANGE = 16
+MIN_RANGE = 32
 MAX_RANGE = 2**30
 MAX_PRODUCT = 2**31
+STEP_RATIO = 4
 COMMAND = "./permutation_tuning_3"  # Replace with the actual command
 
 dataTypes = ['F32', 'F16']
@@ -26,7 +27,7 @@ for perm in perms:
             while i3 <= MAX_RANGE:
                 if i1 * i2 *i3 >= MAX_PRODUCT:
                     # Skip this iteration if product exceeds 2^31
-                    i3 *= 2
+                    i3 *= STEP_RATIO
                     break
 
                 for dataType in dataTypes:
@@ -45,11 +46,11 @@ for perm in perms:
                         print(f"Error while running command: {cmd}\n{e.stderr.decode()}")
 
                 # Increment i3
-                i3 *= 2
+                i3 *= STEP_RATIO
 
             # Increment i2
-            i2 *= 2
+            i2 *= STEP_RATIO
 
         # Increment i1
-        i1 *= 2
+        i1 *= STEP_RATIO
 

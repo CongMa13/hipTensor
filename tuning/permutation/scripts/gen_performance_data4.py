@@ -4,9 +4,10 @@ import itertools
 
 
 # Constants
-MIN_RANGE = 16
+MIN_RANGE = 32
 MAX_RANGE = 2**30
 MAX_PRODUCT = 2**31
+STEP_RATIO = 8
 COMMAND = "./permutation_tuning_4"  # Replace with the actual command
 
 dataTypes = ['F32', 'F16']
@@ -46,14 +47,14 @@ for perm in perms:
                             print(f"Error while running command: {cmd}\n{e.stderr.decode()}")
 
                     # Increment i4
-                    i4 *= 8
+                    i4 *= STEP_RATIO
 
                 # Increment i3
-                i3 *= 8
+                i3 *= STEP_RATIO
 
             # Increment i2
-            i2 *= 8
+            i2 *= STEP_RATIO
 
         # Increment i1
-        i1 *= 8
+        i1 *= STEP_RATIO
 
